@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link type="text/css" href="{% static "of_str_selstroiproekt/css/styles.css" %}" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html ; charset=UTF-8">
+    <link rel="shortcut icon" href="{static 'of_str_selstroiproekt/images/(название файла картинки)' %}" type = "image/x-icon"/>
+    <meta name = "viewport" content="width=device-width,initial-scale=1.0">
+</head>
+<body>
+<table class="table-page" border="0" cellpadding="0" cellspacing="0">
+<tr><td> valign=top>
+<% block meinmenu> %>
+    <div class = "header">
+            <ul id="meinmenu" class="meinmenu">
+            <li class="logo"><a href="{% url 'home' %}"><div class="logo"></div></a></li>
+{% for m in menu %}
+    {% if not forloop.last %}
+        <li><a href="{% url m.url_name %}">{{m.title}}</a></li>
+    {% else %}
+        <li class="last"><a href="{% url m.url_name %}">{{m.title}}</a></li>
+    {% endif %}
+{% endfor %}
+            </ul>
+<% endblock meinmenu %>
+            <div class="clear"></div>
+    </div>
+
+
+<table class="table-content" border="0" cellpadding="0" cellspacing="0">
+<tr>
+
+    <td valign="top" class="left-chapters">
+    <ul id="leftchapters">
+        <li class="selected">Все категории</li>
+        <li><a href="#">Проектирование зданий и сооружений</a></li>
+        <li><a href="#">Проектирование инженерных сетей и коммуникаций</a></li>
+        <li><a href="#">Выполнение сметных расчетов по объектам строительства</a></li>
+        <li><a href="#">Авторский надзор в строительстве</a></li>
+        <li class="share">
+        </li>
+    </ul>
+</td>
+<td valign="top" class="content">
+    {% block breadcrumbs %}
+    {% endblock %}
+
+    <div class="block content">
+        {% endblock %}
+    </div>
+</td>
